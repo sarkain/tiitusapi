@@ -34,7 +34,7 @@ POST
 - published_date: [datetime_iso_string]
 - salary: {enums.jobs.salary} [integer]
 - title: [string]
-- working_hours: {enums.jobs.working_hours} [list of integers]
+- working_hours: {enums.jobs.working_hours} [integer]
 
 #### Optional
 

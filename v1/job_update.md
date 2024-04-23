@@ -25,18 +25,8 @@ PATCH
 
 #### Required
 
-- character: {JOB_CHARACTERS} [integer]
-
-- company: {Company().id} [integer]  
-- duration: {WORK_DURATION} [integer]
-- employment_contract: {EMPLOYMENT_CONTRACT} [integer]
-- job_starts: {JOB_STARTS} [integer]
-- salary: {SALARIES} [integer]
-- title: [string]
-- working_hours: {WORKING_HOURS} [list of integers]
-
-#### Optional, but required before job is published
-
+- application_deadline: [datetime_iso_string]
+- character: {enums.jobs.character} [integer]
 - city: [string]
   *this or coordinates is required*
 - coordinates: [GeoPoint]
@@ -46,23 +36,20 @@ PATCH
    /* example */
    {type: "Point", coordinates: [60.169887, 24.938471]}
    ```
-
-- published_date: 
-   
-- regions_sectors : {RegionsSector.id} [list of objects]
-  *In which regions sectors job is published to*
-  
-  ```
-   /* example */
-   [{id: 1}, {id:2}]
-   ```
+- duration: {enums.jobs.duration} [integer]
+- employment_contract: {enums.jobs.employment_contract} [integer]
+- job_starts: {enums.jobs.job_starts} [integer]
+- published_date: [datetime_iso_string]
+- salary: {enums.jobs.salary} [integer]
+- title: [string]
+- working_hours: {enums.jobs.working_hours} [integer]
 
 #### Optional
 
 - application_type: [integer]
   *Application type, (1) normal or (2) "fast"
 - business_location: {BusinessLocation().id} [integer]
-- certificates: {ValidatedCertificate()} [list of objects]
+- certificates: {Certificate()} [list of objects]
   *Bulk save certificates*
   ```
   ref. certificates_get.md
@@ -72,8 +59,8 @@ PATCH
   
   (name is optional, added here for readability)
 
-- competence: {DEGREE_LEVEL} [integer]
-- competence_industry: {SchoolIndustry} [integer]
+- competence: {enums.jobs.competence} [integer]
+- competence_industry: {SchoolIndustry().id} [integer]
 - country: [string]
 - customer: {Customer().id} [integer]
   *aka Brand*
@@ -93,7 +80,7 @@ PATCH
   (name is optional, added here for readability)
 - is_external_job: [boolean]
   *Job is aplied in external website, ref. url_external*
-- job_type: {JOB_TYPES} [integer]
+- job_type: {enums.jobs.job_type} [integer]
 - job_skills: {JobSkillLevel()} [list of objects]
   *Bulk save job skills*
   ```
@@ -115,7 +102,6 @@ PATCH
   
   (name is optional, added here for readability)
 - postal_code: [string]
-- payment_type: {PAYMENT_TYPE} [integer]
 - payment_salary_custom: [string]
   *Custom salary payment text for employers*
 - salary_custom_text: [string]
@@ -127,7 +113,7 @@ PATCH
 
 ### Success Response
 
-**Code:** 201 Created
+**Code:** 200 OK
   
 **Content:**
 
